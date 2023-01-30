@@ -8,7 +8,7 @@ import { Routes, Route } from 'react-router-dom'
 function App() {
   return (
     <>
-      <Routes basename="/my-project-test">
+      <Routes>
         <Route exact path="/" element={<Homepage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

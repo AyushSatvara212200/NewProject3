@@ -103,7 +103,7 @@ export default class login extends Component {
         const { phone, password } = this.state;
         if (phone && password) {
             axios.post("http://localhost:9000/login", this.state).then((res) => {
-                alert(res.data.message);
+                // alert(res.data.message);
                 // console.log(res.data.found);
                 if (res.data.found) {
                     localStorage.setItem("token","abcdefghijklmnopqrstuvwxyz");

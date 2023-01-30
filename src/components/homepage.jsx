@@ -55,6 +55,7 @@ const StyledContainer = styled.div`
 
 const Headingtag = styled.h1`
   background-image: linear-gradient(60deg,  #630036,#060080);
+  background-clip:text;
   -webkit-background-clip: text;
   color: transparent;
 `;
