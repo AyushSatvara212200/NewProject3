@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import image from "../Images/mountaintwo.png";
 import TextField from "@mui/material/TextField";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import axios from 'axios'
@@ -75,11 +75,20 @@ const SimpleText = styled.div`
 export default class signup extends Component {
   constructor(props) {
     super(props);
+    let loggedIn = true
+    const token = localStorage.getItem("token")
+
+    //Conditions
+    if (token === null) {
+        loggedIn = false
+    }
+    
     this.state = {
       username: "",
       phone: "",
       email: "",
       password: "",
+      loggedIn
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -111,6 +120,9 @@ export default class signup extends Component {
     }
   }
   render() {
+    if(this.state.loggedIn){
+      return < Navigate replace={true} to="/mainpage"/>
+    }
     return (
       <>
         <Container>
