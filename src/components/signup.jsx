@@ -6,6 +6,9 @@ import { Navigate, NavLink } from "react-router-dom";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import axios from 'axios'
+// import PhoneInput from "react-phone-input-2";
+// import "react-phone-input-2/lib/style.css";
+
 
 //STYLED COMPONENTS
 
@@ -52,9 +55,9 @@ const InputContainer = styled.div`
 const StyledTextfield = styled(TextField)`
   width: 70%;
 `;
-const StyledTextfieldNumber = styled(TextField)`
-  width: 70%;
-`;
+// const StyledPhonefield = styled(PhoneInput)`
+//   width: 70%;
+// `;
 const ButtonContainer = styled.div`
   width: 100%;
   text-align: center;
@@ -80,9 +83,9 @@ export default class signup extends Component {
 
     //Conditions
     if (token === null) {
-        loggedIn = false
+      loggedIn = false
     }
-    
+
     this.state = {
       username: "",
       phone: "",
@@ -104,24 +107,23 @@ export default class signup extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const {username,phone,email,password} = this.state
-    if(username && phone && email && password){
-    axios.post("http://localhost:9000/signup",this.state).then((res)=>{
-      alert(res.data.message);
-    })
-    this.setState({
-      username: "",
-      phone: "",
-      email: "",
-      password: ""
-    })
-    }else{
+    const { username, phone, email, password } = this.state
+    if (username && phone && email && password) {
+      axios.post("http://localhost:9000/signup", this.state).then((res) => {
+        alert(res.data.message);
+      })
+      this.setState({
+        username: "",
+        email: "",
+        password: ""
+      })
+    } else {
       alert("invalid")
     }
   }
   render() {
-    if(this.state.loggedIn){
-      return < Navigate replace={true} to="/mainpage"/>
+    if (this.state.loggedIn) {
+      return < Navigate replace={true} to="/mainpage" />
     }
     return (
       <>
@@ -141,7 +143,7 @@ export default class signup extends Component {
                 value={this.state.username}
                 onChange={this.handleChange}
               />
-              <StyledTextfieldNumber
+              <StyledTextfield
                 id="outlined-basic"
                 size="small"
                 label="Phone number"
@@ -151,9 +153,25 @@ export default class signup extends Component {
                 onChange={this.handleChange}
 
               />
+              {/* <StyledPhonefield
+                name="phoneNumber"
+                type="text"
+                country={"in"}
+                inputProps={{
+                  name: "phone",
+                  country: "in",
+                  required: true,
+                  autoFocus: true
+                }}
+                inputStyle={{
+                  backgroundColor: "transparent"
+                }}
+                value={this.state.phone}
+                onChange={phone => this.setState({ phone })}
+              /> */}
               <StyledTextfield
                 id="outlined-basic"
-                type="email"
+                type="text"
                 label="Enter email address"
                 size="small"
                 name="email"

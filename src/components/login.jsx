@@ -7,6 +7,8 @@ import { AwesomeButton } from 'react-awesome-button'
 import 'react-awesome-button/dist/styles.css';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios'
+import "react-phone-input-2/lib/style.css";
+
 
 
 //STYLED COMPONENTS
@@ -71,6 +73,8 @@ const SimpleText = styled.div`
   font-weight: 300;
 `;
 
+
+
 export default class login extends Component {
     constructor(props) {
         super(props);
@@ -91,12 +95,14 @@ export default class login extends Component {
         this.onChangeHandle = this.onChangeHandle.bind(this);
         this.onSubmitHandle = this.onSubmitHandle.bind(this);
     }
+    
     onChangeHandle(e) {
         e.preventDefault();
         this.setState({
             ...this.state,
             [e.target.name]: e.target.value
         })
+
     }
     onSubmitHandle(e) {
         e.preventDefault();
@@ -104,13 +110,14 @@ export default class login extends Component {
         if (phone && password) {
             axios.post("http://localhost:9000/login", this.state).then((res) => {
                 // alert(res.data.message);
-                // console.log(res.data.found);
+                console.log(res.data.found.username);
                 if (res.data.found) {
-                    localStorage.setItem("token","abcdefghijklmnopqrstuvwxyz");
-                    this.setState({loggedIn:true})
-                } 
+                    localStorage.setItem("token", "abcdefghijklmnopqrstuvwxyz");
+                    localStorage.setItem("username",res.data.found.username)
+                    this.setState({ loggedIn: true })
+                }
             })
-        }else{
+        } else {
             alert("Invalid")
         }
     }
@@ -127,7 +134,7 @@ export default class login extends Component {
 
                         {/* Input Container */}
 
-                        <InputContainer>
+                        <InputContainer >
                             <StyledTextfield
                                 id="outlined-basic"
                                 type="text"
@@ -138,7 +145,7 @@ export default class login extends Component {
                                 value={this.state.phone}
                                 onChange={this.onChangeHandle}
                             />
-
+                           
                             <StyledTextfield
                                 id="outlined-basic"
                                 type="password"

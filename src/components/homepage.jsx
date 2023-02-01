@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import image from "../Images/stairs.png";
+import image from "../Images/Cloudy.png";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
-import helpImage from "../Images/helpinghand.png";
+// import helpImage from "../Images/helpinghand.png";
 
 const Conatiner = styled.div`
   width: 100%;
@@ -17,10 +17,10 @@ const Conatiner = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const WrapperImage = styled.div`
-  width: 45%;
-  height: 50%;
-`;
+// const WrapperImage = styled.div`
+//   width: 45%;
+//   height: 50%;
+// `;
 const Wrapper = styled.div`
   width: 50%;
   height: 50%;
@@ -41,7 +41,11 @@ const StyledButton = styled(AwesomeButton)`
   font-family: "Urbanist", sans-serif !important;
   font-weight: 800 !important;
   font-size: 20px !important;
-  -button-primary-color: #002347;
+  --button-primary-color: #475472;
+  --button-primary-color-dark: #2a3143;
+  --button-primary-color-hover: #424e6a;
+  --button-primary-color-active: #424e6a;
+  --button-primary-border:1px solid #484848;
 `;
 const StyledContainer = styled.div`
   width: 100%;
@@ -54,7 +58,7 @@ const StyledContainer = styled.div`
 `;
 
 const Headingtag = styled.h1`
-  background-image: linear-gradient(60deg,  #630036,#060080);
+  background-image: linear-gradient(60deg,  #92bcff,#c2e9fb);
   background-clip:text;
   -webkit-background-clip: text;
   color: transparent;
@@ -68,13 +72,13 @@ export default class homepage extends Component {
     return (
       <>
       <Conatiner>
-        <WrapperImage>
+        {/* <WrapperImage>
           <img
             src={helpImage}
             alt=""
             style={{ width: "100%", height: "100%" }}
           />
-        </WrapperImage>
+        </WrapperImage> */}
         <Wrapper>
           <Headingtag>Welcome to Community Help Space</Headingtag>
           <StyledContainer>
