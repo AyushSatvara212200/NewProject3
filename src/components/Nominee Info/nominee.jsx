@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Navigate } from "react-router";
 import styled from "styled-components";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
-import { NavLink } from "react-router-dom";
-import image from "../Images/poly.png";
+import image from "../../Images/poly.png";
 import LogoutIcon from "@mui/icons-material/LogoutOutlined";
+import { NavLink } from "react-router-dom";
+import { Navigate } from "react-router";
 
 const Conatiner = styled.div`
   width: 100%;
@@ -34,27 +34,6 @@ const Wrapper = styled.div`
   gap: 25px;
   font-family: "Maven Pro", sans-serif I !important;
 `;
-const ButtonContainer = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
-`
-const StyledButton = styled(AwesomeButton)`
-  width: 210px;
-  height: 60px;
-  font-family: "Urbanist", sans-serif !important;
-  font-weight: 800 !important;
-  font-size: 20px !important;
-  --button-secondary-color: #1e88e5;
-  --button-secondary-color-dark: #001e57;
-  --button-secondary-color-light: #001e57;
-  --button-secondary-color-hover: #1e88e5;
-  --button-secondary-color-active: #1e88e5;
-  --button-secondary-border: 1px solid #001e57;
-`;
 const StyledButtonSec = styled(AwesomeButton)`
   width: 100px;
   height: 60px;
@@ -69,28 +48,32 @@ const StyledButtonSec = styled(AwesomeButton)`
 const DashBoard = styled.div`
   width: 100%;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: flex-end;
   margin-top: 10px;
 `;
-export default class mainpage extends Component {
+
+export default class dashboard extends Component {
     constructor(props) {
         super(props);
-        let loggedIn = true;
         const token = localStorage.getItem("token");
         const username = localStorage.getItem("username");
+        let loggedIn = true;
 
         if (token === null) {
             loggedIn = false;
         }
         this.state = {
-            loggedIn,
-            username
+            token,
+            username,
+            loggedIn
         };
+
+
     }
     render() {
         if (this.state.loggedIn === false) {
-            return <Navigate replace={true} to="/login" />;
+            return <Navigate replace={true} to="/" />;
         }
         return (
             <>
@@ -104,18 +87,7 @@ export default class mainpage extends Component {
                     </DashBoard>
                     <Wrapper>
                         <h1>Welcome <span style={{ background: `-webkit-linear-gradient(right, #0d0081, #710000)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}> {this.state.username} </span> !!</h1>
-                        <ButtonContainer>
-                            <NavLink to="/nomineeDetail">
-                                <StyledButton type="secondary">
-                                    Continue
-                                </StyledButton>
-                            </NavLink>
-                            <NavLink>
-                                <StyledButton type="secondary">
-                                    Register Nominee
-                                </StyledButton>
-                            </NavLink>
-                        </ButtonContainer>
+                        <h3>This is a Nominee Detail for Community .</h3>
                     </Wrapper>
                 </Conatiner>
             </>

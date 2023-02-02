@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import image from "../Images/mountaintwo.png";
+import image from "../Images/mountDark.png";
 import TextField from "@mui/material/TextField";
 import { Navigate, NavLink } from "react-router-dom";
 import { AwesomeButton } from "react-awesome-button";
@@ -54,6 +54,9 @@ const InputContainer = styled.div`
 `;
 const StyledTextfield = styled(TextField)`
   width: 70%;
+  input:-webkit-autofill { 
+    -webkit-background-clip: text;
+}
 `;
 // const StyledPhonefield = styled(PhoneInput)`
 //   width: 70%;
