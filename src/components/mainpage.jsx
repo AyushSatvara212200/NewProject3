@@ -6,6 +6,7 @@ import "react-awesome-button/dist/styles.css";
 import { NavLink } from "react-router-dom";
 import image from "../Images/poly.png";
 import LogoutIcon from "@mui/icons-material/LogoutOutlined";
+import SideNavbar from './sideNavbar';
 
 const Conatiner = styled.div`
   width: 100%;
@@ -16,7 +17,7 @@ const Conatiner = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   position: relative;
   gap: 100px;
 `;
@@ -55,24 +56,7 @@ const StyledButton = styled(AwesomeButton)`
   --button-secondary-color-active: #1e88e5;
   --button-secondary-border: 1px solid #001e57;
 `;
-const StyledButtonSec = styled(AwesomeButton)`
-  width: 100px;
-  height: 60px;
-  font-family: "Urbanist", sans-serif !important;
-  font-weight: 800 !important;
-  font-size: 20px !important;
-  --button-secondary-color: #001e57;
-  --button-secondary-color-hover: #001e57;
-  --button-secondary-color-active: #001e57;
-  margin-right: 30px;
-`;
-const DashBoard = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  margin-top: 10px;
-`;
+
 export default class mainpage extends Component {
     constructor(props) {
         super(props);
@@ -94,23 +78,17 @@ export default class mainpage extends Component {
         }
         return (
             <>
+                <SideNavbar />
                 <Conatiner>
-                    <DashBoard>
-                        <NavLink to="/">
-                            <StyledButtonSec type="secondary">
-                                <LogoutIcon />
-                            </StyledButtonSec>
-                        </NavLink>
-                    </DashBoard>
                     <Wrapper>
                         <h1>Welcome <span style={{ background: `-webkit-linear-gradient(right, #0d0081, #710000)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}> {this.state.username} </span> !!</h1>
                         <ButtonContainer>
-                            <NavLink to="/nomineeDetail">
+                            <NavLink>
                                 <StyledButton type="secondary">
                                     Continue
                                 </StyledButton>
                             </NavLink>
-                            <NavLink>
+                            <NavLink to="/addmember">
                                 <StyledButton type="secondary">
                                     Register Nominee
                                 </StyledButton>

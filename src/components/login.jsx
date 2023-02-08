@@ -8,7 +8,6 @@ import 'react-awesome-button/dist/styles.css';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios'
 import "react-phone-input-2/lib/style.css";
-import { useForm } from 'react-hook-form';
 
 
 
@@ -92,6 +91,7 @@ export default class login extends Component {
         //variables
         let loggedIn = true
         const token = localStorage.getItem("token")
+
         //Conditions
         if (token === null) {
             loggedIn = false
@@ -105,7 +105,7 @@ export default class login extends Component {
         this.onChangeHandle = this.onChangeHandle.bind(this);
         this.onSubmitHandle = this.onSubmitHandle.bind(this);
     }
-
+    
     onChangeHandle(e) {
         e.preventDefault();
         this.setState({
@@ -123,7 +123,7 @@ export default class login extends Component {
                 console.log(res.data.found.username);
                 if (res.data.found) {
                     localStorage.setItem("token", "abcdefghijklmnopqrstuvwxyz7s78df7sdfhdf87df8sdftshbdgfuys");
-                    localStorage.setItem("username", res.data.found.username)
+                    localStorage.setItem("username",res.data.found.username)
                     this.setState({ loggedIn: true })
                 }
             })
@@ -132,68 +132,61 @@ export default class login extends Component {
         }
     }
     render() {
-
         if (this.state.loggedIn) {
             return <Navigate replace to="/mainpage" />
         }
 
         return (
             <>
-                <form >
-                    <Container>
-                        <Wrapper>
-                            <LogContainer >Log In</LogContainer>
+            {console.log(this.state.phone)}
+                <Container>
+                    <Wrapper>
+                        <LogContainer >Log In</LogContainer>
 
-                            {/* Input Container */}
+                        {/* Input Container */}
 
-                            <InputContainer >
-                                <StyledTextfield
-                                    id="outlined-basic"
-                                    type="text"
-                                    label="Phone"
-                                    variant="outlined"
-                                    size="small"
+                        <InputContainer >
+                            <StyledTextfield
+                                id="outlined-basic"
+                                type="text"
+                                label="Phone"
+                                variant="outlined"
+                                size="small"
+                                name="phone"
+                                value={this.state.phone}
+                                onChange={this.onChangeHandle}
+                            />
+                            <StyledTextfield
+                                id="outlined-basic"
+                                type="password"
+                                label="Password"
+                                variant="outlined"
+                                size="small"
+                                autoComplete="current-password"
+                                name="password"
+                                value={this.state.password}
+                                onChange={this.onChangeHandle}
+                            />
+                        </InputContainer>
 
-                                    name="phone"
-                                    value={this.state.phone}
-                                    onChange={this.onChangeHandle}
-                                />
+                        {/* Button Container */}
 
-                                <StyledTextfield
-                                    id="outlined-basic"
-                                    type="password"
-                                    label="Password"
-                                    variant="outlined"
-                                    size="small"
-                                    autoComplete="current-password"
+                        <ButtonContainer>
+                            <StyledButton variant="contained" onPress={this.onSubmitHandle}  >Submit</StyledButton>
+                        </ButtonContainer>
 
-                                    name="password"
-                                    value={this.state.password}
-                                    onChange={this.onChangeHandle}
-                                />
-                            </InputContainer>
+                        {/* Simple Text */}
 
-                            {/* Button Container */}
-
-                            <ButtonContainer type="submit">
-                                <StyledButton variant="contained"
-                                // onPress={this.onSubmitHandle}  
-                                >Submit</StyledButton>
-                            </ButtonContainer>
-
-                            {/* Simple Text */}
-
-                            <SimpleText>
-                                Don't have an account?&nbsp;
-                                <NavLink
-                                    to="/signup"
-                                    style={{ textDecoration: "none", color: "blue" }}>
-                                    Sign Up
-                                </NavLink>
-                            </SimpleText>
-                        </Wrapper>
-                    </Container>
-                </form>
+                        <SimpleText>
+                            Don't have an account?&nbsp;
+                            <NavLink
+                                to="/signup"
+                                style={{ textDecoration: "none", color: "blue" }}>
+                                Sign Up
+                            </NavLink>
+                        </SimpleText>
+                    </Wrapper>
+                </Container>
             </>
         )
     }
