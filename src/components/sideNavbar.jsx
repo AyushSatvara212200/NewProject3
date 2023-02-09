@@ -6,6 +6,8 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import PersonIcon from '@mui/icons-material/Person';
 
 
 const StyledSideNav = styled(SideNav)`
@@ -25,9 +27,16 @@ const StyledChartIcon = styled(BarChartIcon)`
 const StyledLogoutIcon = styled(LogoutIcon)`
     margin-top: 12px;
 `
+const StyledAccountCircleIcon= styled(AccountCircleIcon)`
+    margin-top: 12px;
+`
+const StyledPersonIcon= styled(PersonIcon)`
+    margin-top: 12px;
+`
 
 const SideNavbar = () => {
     const navigate = useNavigate();
+    const username = localStorage.getItem("username");
     return (
         <>
             <StyledSideNav
@@ -37,7 +46,15 @@ const SideNavbar = () => {
                 }}
             >
                 <SideNav.Toggle />
-                <SideNav.Nav defaultSelected='home'>
+                <SideNav.Nav>
+                    <NavItem eventKey="account/personal"> 
+                        <NavIcon >
+                            <StyledPersonIcon />
+                        </NavIcon>
+                        <NavText >
+                            Welcome {username} !!
+                        </NavText>
+                    </NavItem>
                     <NavItem eventKey="mainpage">
                         <NavIcon >
                             <StyledHomeIcon />
@@ -65,6 +82,24 @@ const SideNavbar = () => {
                         </NavItem>
                     </NavItem>
 
+                    <NavItem eventKey="account">
+                        <NavIcon>
+                            <StyledAccountCircleIcon />
+                        </NavIcon>
+                        <NavText>
+                           My Account
+                        </NavText>
+                        <NavItem eventKey="account/personal">
+                            <NavText >
+                                Personal Detail
+                            </NavText>
+                        </NavItem>
+                        <NavItem eventKey="account/nominee">
+                            <NavText>
+                                Nominee Detail
+                            </NavText>
+                        </NavItem>
+                    </NavItem>
                     <NavItem eventKey="">
                         <NavIcon>
                             <StyledLogoutIcon />

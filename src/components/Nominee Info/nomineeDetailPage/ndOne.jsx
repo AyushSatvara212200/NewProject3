@@ -52,13 +52,13 @@ const NdOne = ({ register }) => {
 
                 <NameContainer>
                     <StyledTextField
-                        id="outlined-basic" label="Name" variant="outlined" {...register("name")} className="textfield"
+                        id="outlined-basic" label="Name" variant="outlined" {...register("nomineeUserName")} className="textfield"
                     />
                     <StyledTextField
-                        id="outlined-basic" label="Father Name" variant="outlined" {...register("fathername")}
+                        id="outlined-basic" label="Father Name" variant="outlined" {...register("nomineeUserFathername")}
                     />
                     <StyledTextField
-                        id="outlined-basic" label="Surname" variant="outlined" {...register("surname")}
+                        id="outlined-basic" label="Surname" variant="outlined" {...register("nomineeUserSurname")}
                     />
                 </NameContainer>
                 <GenderContainer>
@@ -67,18 +67,18 @@ const NdOne = ({ register }) => {
                         aria-labelledby="demo-row-radio-buttons-group-label"
                         name="row-radio-buttons-group"
                     >
-                        <FormControlLabel {...register("gender")} value="female" control={<Radio />} label="Female" />
-                        <FormControlLabel {...register("gender")} value="male" control={<Radio />} label="Male" />
+                        <FormControlLabel {...register("nomineeUserGender")} value="female" control={<Radio />} label="Female" />
+                        <FormControlLabel {...register("nomineeUserGender")} value="male" control={<Radio />} label="Male" />
                     </RadioGroup>
                     <StyledTextField
-                        id="outlined-basic" fullWidth label="Birthdate" variant="outlined" type="date" InputLabelProps={{
+                        id="outlined-basic" fullWidth label="Birthdate" variant="outlined" type="date" {...register("nomineeUserBirthdate")} InputLabelProps={{
                             shrink: true,
                         }} />
                 </GenderContainer>
 
-                <StyledTextField id="outlined-basic" fullWidth label="Email Address" variant="outlined" type="email" {...register("email")} />
-                <StyledTextField id="outlined-basic" fullWidth label="Phone Number" variant="outlined" type="phone" {...register("phone")} />
-                <StyledTextField id="outlined-basic" fullWidth label="Native Place" variant="outlined" type="text" {...register("native place")} />
+                <StyledTextField id="outlined-basic" fullWidth label="Email Address" variant="outlined" type="email" {...register("nomineeUserEmail")} />
+                <StyledTextField id="outlined-basic" fullWidth label="Phone Number" variant="outlined" type="phone" {...register("nomineeUserPhone")} />
+                <StyledTextField id="outlined-basic" fullWidth label="Native Place" variant="outlined" type="text" {...register("nomineeUserNativePlace")} />
 
 
             </Container>

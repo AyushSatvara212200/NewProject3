@@ -8,7 +8,7 @@ import image from "../Images/poly.png";
 import LogoutIcon from "@mui/icons-material/LogoutOutlined";
 import SideNavbar from './sideNavbar';
 
-const Conatiner = styled.div`
+const Container = styled.div`
   width: 100%;
   height: 100vh;
   background-image: url(${image});
@@ -63,13 +63,15 @@ export default class mainpage extends Component {
         let loggedIn = true;
         const token = localStorage.getItem("token");
         const username = localStorage.getItem("username");
+        const id = localStorage.getItem("_id");
 
         if (token === null) {
             loggedIn = false;
         }
         this.state = {
             loggedIn,
-            username
+            username,
+            id
         };
     }
     render() {
@@ -79,13 +81,13 @@ export default class mainpage extends Component {
         return (
             <>
                 <SideNavbar />
-                <Conatiner>
+                <Container>
                     <Wrapper>
-                        <h1>Welcome <span style={{ background: `-webkit-linear-gradient(right, #0d0081, #710000)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}> {this.state.username} </span> !!</h1>
+                        <h1>Welcome {this.state.id}<span style={{ background: `-webkit-linear-gradient(right, #0d0081, #710000)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}> {this.state.username} </span> !!</h1>
                         <ButtonContainer>
-                            <NavLink>
+                            <NavLink to="/personalDetail">
                                 <StyledButton type="secondary">
-                                    Continue
+                                    Update Detail
                                 </StyledButton>
                             </NavLink>
                             <NavLink to="/addmember">
@@ -95,7 +97,7 @@ export default class mainpage extends Component {
                             </NavLink>
                         </ButtonContainer>
                     </Wrapper>
-                </Conatiner>
+                </Container>
             </>
         );
     }

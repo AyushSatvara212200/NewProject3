@@ -118,7 +118,11 @@ export default class login extends Component {
         e.preventDefault();
         const { phone, password } = this.state;
         if (phone && password) {
-            axios.post("http://localhost:9000/login", this.state).then((res) => {
+            axios.post("http://localhost:9000/login", this.state,{
+                headers:{
+                    
+                }
+            }).then((res) => {
                 // alert(res.data.message);
                 console.log(res.data.found.username);
                 if (res.data.found) {
