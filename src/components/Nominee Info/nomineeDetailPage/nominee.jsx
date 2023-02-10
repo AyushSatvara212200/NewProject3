@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import backgroundImage from '../../../Images/slant.png'
+import backgroundImage from "../../../Images/slant.png";
 // import NdOne from "./ndOne";
 import NdTwo from "./ndTwo";
 import NdThree from "./ndThree";
 import { useForm } from "react-hook-form";
-import Pagination from '@mui/material/Pagination';
+import Pagination from "@mui/material/Pagination";
 // import { AwesomeButton } from 'react-awesome-button';
-import './button.css'
-import axios from 'axios'
+import "./button.css";
+import axios from "axios";
 
 const Container = styled.div`
   width: 100%;
@@ -38,70 +38,84 @@ const Wrapper = styled.div`
   font-family: "Maven Pro", sans-serif I !important;
 `;
 const Heading = styled.h1`
-    position: absolute;
-    top: 2%;
-`
+  position: absolute;
+  top: 2%;
+`;
 const StyledPagination = styled(Pagination)`
-.css-lqq3n7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected{
+  .css-lqq3n7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
     color: #0012ff !important;
     border: 1px solid rgb(0 26 255 / 50%);
     background-color: rgb(39 42 176 / 12%);
-}
-position: absolute;
-bottom: 2%;
-`
-
-
+  }
+  position: absolute;
+  bottom: 2%;
+`;
 
 const Nominee = () => {
-    const FormTitles = ["Nominee Details", "Upload Docs"];
-    const [page, setPage] = useState(1);
-    const { register, handleSubmit } = useForm();
+  const FormTitles = ["Nominee Details", "Upload Docs"];
+  const [page, setPage] = useState(1);
+  const { register, handleSubmit } = useForm();
 
-    const onSubmit = (data) => {
-        const { nomineeName, nomineePhone } = data;
-        if (nomineeName && nomineePhone) {
-            axios.post("http://localhost:9000/nomineeDetail", data).then((res) => {
-                alert(res.data.message);
-            })
-        } else {
-            alert("invalid")
-        }
-
-    };
-
-    const handleChange = (event, value) => {
-        setPage(value);
-    };
-
-    const PageDisplay = () => {
-        if (page === 1) {
-            return <NdTwo register={register}
-                handleSubmit={handleSubmit}
-                onSubmit={onSubmit} />
-        }
-        else {
-            return <NdThree register={register}
-                handleSubmit={handleSubmit}
-                onSubmit={onSubmit} />
-        }
+  const onSubmit = (data) => {
+    const { nomineeName, nomineePhone } = data;
+    if (nomineeName && nomineePhone) {
+      axios
+        .post(`${process.env.REACT_APP_API_URL}/nominee`, data)
+        .then((res) => {
+          alert(res.data.message);
+        });
+    } else {
+      alert("invalid");
     }
+  };
 
-    return (
-        <>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <Container>
-                    <Wrapper>
-                        <Heading>{FormTitles[page - 1]}</Heading>
-                        <h2>{PageDisplay()}</h2>
-                        {page === 2 ? <button className="btn" type="submit">Submit</button> : null}
-                        <StyledPagination count={2} page={page} onChange={handleChange} variant="outlined" />
-                    </Wrapper>
-                </Container>
-            </form>
-        </>
-    )
-}
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
 
+  const PageDisplay = () => {
+    if (page === 1) {
+      return (
+        <NdTwo
+          register={register}
+          handleSubmit={handleSubmit}
+          onSubmit={onSubmit}
+        />
+      );
+    } else {
+      return (
+        <NdThree
+          register={register}
+          handleSubmit={handleSubmit}
+          onSubmit={onSubmit}
+        />
+      );
+    }
+  };
 
-export default Nominee
+  return (
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Container>
+          <Wrapper>
+            <Heading>{FormTitles[page - 1]}</Heading>
+            <h2>{PageDisplay()}</h2>
+            {page === 2 ? (
+              <button className="btn" type="submit">
+                Submit
+              </button>
+            ) : null}
+            <StyledPagination
+              count={2}
+              page={page}
+              onChange={handleChange}
+              variant="outlined"
+            />
+          </Wrapper>
+        </Container>
+      </form>
+    </>
+  );
+};
+
+export default Nominee;

@@ -5,10 +5,9 @@ import TextField from "@mui/material/TextField";
 import { Navigate, NavLink } from "react-router-dom";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
-import axios from 'axios'
+import axios from "axios";
 // import PhoneInput from "react-phone-input-2";
 // import "react-phone-input-2/lib/style.css";
-
 
 //STYLED COMPONENTS
 
@@ -54,9 +53,9 @@ const InputContainer = styled.div`
 `;
 const StyledTextfield = styled(TextField)`
   width: 70%;
-  input:-webkit-autofill { 
+  input:-webkit-autofill {
     -webkit-background-clip: text;
-}
+  }
 `;
 // const StyledPhonefield = styled(PhoneInput)`
 //   width: 70%;
@@ -81,12 +80,12 @@ const SimpleText = styled.div`
 export default class signup extends Component {
   constructor(props) {
     super(props);
-    let loggedIn = true
-    const token = localStorage.getItem("token")
+    let loggedIn = true;
+    const token = localStorage.getItem("token");
 
     //Conditions
     if (token === null) {
-      loggedIn = false
+      loggedIn = false;
     }
 
     this.state = {
@@ -94,7 +93,7 @@ export default class signup extends Component {
       phone: "",
       email: "",
       password: "",
-      loggedIn
+      loggedIn,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -104,29 +103,31 @@ export default class signup extends Component {
     e.preventDefault();
     this.setState({
       ...this.state,
-      [e.target.name]: e.target.value
-    })
+      [e.target.name]: e.target.value,
+    });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const { username, phone, email, password } = this.state
+    const { username, phone, email, password } = this.state;
     if (username && phone && email && password) {
-      axios.post("http://localhost:9000/signup", this.state).then((res) => {
-        alert(res.data.message);
-      })
+      axios
+        .post(`${process.env.REACT_APP_API_URL}/signup`, this.state)
+        .then((res) => {
+          alert(res.data.message);
+        });
       this.setState({
         username: "",
         email: "",
-        password: ""
-      })
+        password: "",
+      });
     } else {
-      alert("invalid")
+      alert("invalid");
     }
   }
   render() {
     if (this.state.loggedIn) {
-      return < Navigate replace={true} to="/mainpage" />
+      return <Navigate replace={true} to="/mainpage" />;
     }
     return (
       <>
@@ -154,7 +155,6 @@ export default class signup extends Component {
                 name="phone"
                 value={this.state.phone}
                 onChange={this.handleChange}
-
               />
               {/* <StyledPhonefield
                 name="phoneNumber"
@@ -196,7 +196,9 @@ export default class signup extends Component {
             {/* Button Container  */}
 
             <ButtonContainer>
-              <StyledButton type="primary" onPress={this.handleSubmit}>Register</StyledButton>
+              <StyledButton type="primary" onPress={this.handleSubmit}>
+                Register
+              </StyledButton>
             </ButtonContainer>
 
             {/* Simple text */}
@@ -205,7 +207,8 @@ export default class signup extends Component {
               Already have an account?&nbsp;
               <NavLink
                 to="/login"
-                style={{ textDecoration: "none", color: "blue" }}>
+                style={{ textDecoration: "none", color: "blue" }}
+              >
                 Log In
               </NavLink>
             </SimpleText>

@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from "react";
 import styled from "styled-components";
 import image from "../Images/mountLight.png";
 import TextField from "@mui/material/TextField";
-import { NavLink } from "react-router-dom";
-import { AwesomeButton } from 'react-awesome-button'
-import 'react-awesome-button/dist/styles.css';
-import { Navigate } from 'react-router-dom';
-import axios from 'axios'
+import { NavLink, useNavigate } from "react-router-dom";
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
+import { Navigate } from "react-router-dom";
+import axios from "axios";
 import "react-phone-input-2/lib/style.css";
-
-
+import { useDispatch, useSelector } from "react-redux";
+import authActions from "../redux/reducers/auth/actions";
 
 //STYLED COMPONENTS
 
@@ -25,8 +25,8 @@ const Container = styled.div`
 `;
 const Wrapper = styled.div`
   width: 30%;
- height: 60%;
- background-color: #ffffffa9;
+  height: 60%;
+  background-color: #ffffffa9;
   backdrop-filter: blur(20px);
   border-radius: 20px;
   border-radius: 20px;
@@ -56,9 +56,9 @@ const InputContainer = styled.div`
 const StyledTextfield = styled(TextField)`
   width: 70%;
   background-color: transparent;
-  input:-webkit-autofill { 
+  input:-webkit-autofill {
     -webkit-background-clip: text;
-}
+  }
   /* :active{
     background-color: transparent;
   }
@@ -83,115 +83,146 @@ const SimpleText = styled.div`
   font-weight: 300;
 `;
 
+// import React from 'react'
 
+export default function Login() {
+  const navigate = useNavigate();
 
-export default class login extends Component {
-    constructor(props) {
-        super(props);
-        //variables
-        let loggedIn = true
-        const token = localStorage.getItem("token")
+  const dispatch = useDispatch();
+  const { loggedIn } = useSelector((state) => state.auth);
+  const [phone, setphone] = useState("9574952267");
+  const [password, setpassword] = useState("Test@123!");
+  // const [phone, setphone] = useState('')
 
-        //Conditions
-        if (token === null) {
-            loggedIn = false
-        }
-        this.state = {
-            phone: "",
-            password: "",
-            loggedIn
-        }
+  const onChangeHandle = (e) => {
+    e.preventDefault();
+    // this.setState({
+    //   ...this.state,
+    //   [e.target.name]: e.target.value,
+    // });
 
-        this.onChangeHandle = this.onChangeHandle.bind(this);
-        this.onSubmitHandle = this.onSubmitHandle.bind(this);
+    if (e.target.name === "phone") {
+      setphone(e.target.value);
     }
-    
-    onChangeHandle(e) {
-        e.preventDefault();
-        this.setState({
-            ...this.state,
-            [e.target.name]: e.target.value
-        })
 
+    if (e.target.name === "password") {
+      setpassword(e.target.value);
     }
-    onSubmitHandle(e) {
-        e.preventDefault();
-        const { phone, password } = this.state;
-        if (phone && password) {
-            axios.post("http://localhost:9000/login", this.state,{
-                headers:{
-                    
-                }
-            }).then((res) => {
-                // alert(res.data.message);
-                console.log(res.data.found.username);
-                if (res.data.found) {
-                    localStorage.setItem("token", "abcdefghijklmnopqrstuvwxyz7s78df7sdfhdf87df8sdftshbdgfuys");
-                    localStorage.setItem("username",res.data.found.username)
-                    this.setState({ loggedIn: true })
-                }
-            })
-        } else {
-            alert("Invalid")
-        }
-    }
-    render() {
-        if (this.state.loggedIn) {
-            return <Navigate replace to="/mainpage" />
-        }
-
-        return (
-            <>
-            {console.log(this.state.phone)}
-                <Container>
-                    <Wrapper>
-                        <LogContainer >Log In</LogContainer>
-
-                        {/* Input Container */}
-
-                        <InputContainer >
-                            <StyledTextfield
-                                id="outlined-basic"
-                                type="text"
-                                label="Phone"
-                                variant="outlined"
-                                size="small"
-                                name="phone"
-                                value={this.state.phone}
-                                onChange={this.onChangeHandle}
-                            />
-                            <StyledTextfield
-                                id="outlined-basic"
-                                type="password"
-                                label="Password"
-                                variant="outlined"
-                                size="small"
-                                autoComplete="current-password"
-                                name="password"
-                                value={this.state.password}
-                                onChange={this.onChangeHandle}
-                            />
-                        </InputContainer>
-
-                        {/* Button Container */}
-
-                        <ButtonContainer>
-                            <StyledButton variant="contained" onPress={this.onSubmitHandle}  >Submit</StyledButton>
-                        </ButtonContainer>
-
-                        {/* Simple Text */}
-
-                        <SimpleText>
-                            Don't have an account?&nbsp;
-                            <NavLink
-                                to="/signup"
-                                style={{ textDecoration: "none", color: "blue" }}>
-                                Sign Up
-                            </NavLink>
-                        </SimpleText>
-                    </Wrapper>
-                </Container>
-            </>
+  };
+  const onSubmitHandle = (e) => {
+    e.preventDefault();
+    // const { phone, password } = this.state;
+    if (phone && password) {
+      axios
+        .post(
+          `${process.env.REACT_APP_API_URL}/api/auth/login`,
+          {
+            phone,
+            password,
+          },
+          {
+            // headers: {},
+          }
         )
+        .then((res) => {
+          // alert(res.data.message);
+          console.log(res.data);
+          if (res.data.token && res.data.user) {
+            dispatch(authActions.setUserData(res.data.token, res.data.user));
+            navigate("/mainpage");
+          }
+        });
+    } else {
+      alert("Invalid");
     }
+  };
+
+  // if (loggedIn) {
+  //   return <Navigate replace to="/mainpage" />;
+  // }
+
+  return (
+    <>
+      {/* {console.log(this.state.phone)} */}
+      <Container>
+        <Wrapper>
+          <LogContainer>Log In</LogContainer>
+
+          {/* Input Container */}
+
+          <InputContainer>
+            <StyledTextfield
+              id="outlined-basic"
+              type="text"
+              label="Phone"
+              variant="outlined"
+              size="small"
+              name="phone"
+              value={phone}
+              onChange={onChangeHandle}
+            />
+            <StyledTextfield
+              id="outlined-basic"
+              type="password"
+              label="Password"
+              variant="outlined"
+              size="small"
+              autoComplete="current-password"
+              name="password"
+              value={password}
+              onChange={onChangeHandle}
+            />
+          </InputContainer>
+
+          {/* Button Container */}
+
+          <ButtonContainer>
+            <StyledButton variant="contained" onPress={onSubmitHandle}>
+              Submit
+            </StyledButton>
+          </ButtonContainer>
+
+          {/* Simple Text */}
+
+          <SimpleText>
+            Don't have an account?&nbsp;
+            <NavLink
+              to="/signup"
+              style={{ textDecoration: "none", color: "blue" }}
+            >
+              Sign Up
+            </NavLink>
+          </SimpleText>
+        </Wrapper>
+      </Container>
+    </>
+  );
 }
+
+// class login extends Component {
+//   constructor(props) {
+//     super(props);
+//     //variables
+//     let loggedIn = true;
+//     const token = localStorage.getItem("token");
+
+//     //Conditions
+//     if (token === null) {
+//       loggedIn = false;
+//     }
+//     this.state = {
+//       phone: "9574952267",
+//       password: "Test@123!",
+//       loggedIn,
+//     };
+
+//     this.onChangeHandle = this.onChangeHandle.bind(this);
+//     this.onSubmitHandle = this.onSubmitHandle.bind(this);
+//   }
+
+//   render() {
+
+//   }
+// }
+
+// export default ();

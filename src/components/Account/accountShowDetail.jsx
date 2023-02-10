@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import image from "../../Images/poly.png";
-import SideNavbar from '../sideNavbar';
-import axios from 'axios';
+import SideNavbar from "../sideNavbar";
+import axios from "axios";
 
 const Container = styled.div`
   width: 100%;
@@ -32,19 +32,25 @@ const Wrapper = styled.div`
   font-family: "Maven Pro", sans-serif I !important;
 `;
 
-
-
 const AccountShowDetail = () => {
   const [user, setUser] = useState([]);
-  const fetchData = () => {
-    return fetch("http://localhost:9000/read")
-      .then((response) => response.json())
-      .then((data) => setUser(data));
-  }
+  const fetchData = async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/user/me`
+      );
+
+      console.log("user", data);
+    } catch (error) {
+      console.log(error);
+    }
+    // return fetch(`${process.env.REACT_APP_API_URL}/read`)
+    //   .then((response) => response.json())
+    //   .then((data) => setUser(data));
+  };
   useEffect(() => {
     fetchData();
-
-  }, [])
+  }, []);
   return (
     <>
       <SideNavbar />
@@ -64,7 +70,7 @@ const AccountShowDetail = () => {
         </Wrapper>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default AccountShowDetail
+export default AccountShowDetail;

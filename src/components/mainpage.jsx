@@ -6,7 +6,8 @@ import "react-awesome-button/dist/styles.css";
 import { NavLink } from "react-router-dom";
 import image from "../Images/poly.png";
 import LogoutIcon from "@mui/icons-material/LogoutOutlined";
-import SideNavbar from './sideNavbar';
+import SideNavbar from "./sideNavbar";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   width: 100%;
@@ -36,13 +37,13 @@ const Wrapper = styled.div`
   font-family: "Maven Pro", sans-serif I !important;
 `;
 const ButtonContainer = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
-`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+`;
 const StyledButton = styled(AwesomeButton)`
   width: 210px;
   height: 60px;
@@ -57,48 +58,60 @@ const StyledButton = styled(AwesomeButton)`
   --button-secondary-border: 1px solid #001e57;
 `;
 
-export default class mainpage extends Component {
-    constructor(props) {
-        super(props);
-        let loggedIn = true;
-        const token = localStorage.getItem("token");
-        const username = localStorage.getItem("username");
-        const id = localStorage.getItem("_id");
-
-        if (token === null) {
-            loggedIn = false;
-        }
-        this.state = {
-            loggedIn,
-            username,
-            id
-        };
-    }
-    render() {
-        if (this.state.loggedIn === false) {
-            return <Navigate replace={true} to="/login" />;
-        }
-        return (
-            <>
-                <SideNavbar />
-                <Container>
-                    <Wrapper>
-                        <h1>Welcome {this.state.id}<span style={{ background: `-webkit-linear-gradient(right, #0d0081, #710000)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}> {this.state.username} </span> !!</h1>
-                        <ButtonContainer>
-                            <NavLink to="/personalDetail">
-                                <StyledButton type="secondary">
-                                    Update Detail
-                                </StyledButton>
-                            </NavLink>
-                            <NavLink to="/addmember">
-                                <StyledButton type="secondary">
-                                    Register Nominee
-                                </StyledButton>
-                            </NavLink>
-                        </ButtonContainer>
-                    </Wrapper>
-                </Container>
-            </>
-        );
-    }
+export default function MainPage() {
+  const { loggedIn, userdata } = useSelector((state) => state.auth);
+  return (
+    <>
+      <SideNavbar />
+      <Container>
+        <Wrapper>
+          <h1>
+            Welcome{" "}
+            <span
+              style={{
+                background: `-webkit-linear-gradient(right, #0d0081, #710000)`,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              {userdata.firstName || ""} {userdata.lastName || ""}!!
+            </span>
+          </h1>
+          <ButtonContainer>
+            <NavLink to="/personalDetail">
+              <StyledButton type="secondary">Update Detail</StyledButton>
+            </NavLink>
+            <NavLink to="/addmember">
+              <StyledButton type="secondary">Register Nominee</StyledButton>
+            </NavLink>
+          </ButtonContainer>
+        </Wrapper>
+      </Container>
+    </>
+  );
 }
+
+// export default class mainpage extends Component {
+//     constructor(props) {
+//         super(props);
+//         let loggedIn = true;
+//         const token = localStorage.getItem("token");
+//         const username = localStorage.getItem("username");
+//         const id = localStorage.getItem("_id");
+
+//         if (token === null) {
+//             loggedIn = false;
+//         }
+//         this.state = {
+//             loggedIn,
+//             username,
+//             id
+//         };
+//     }
+//     render() {
+//         // if (this.state.loggedIn === false) {
+//         //     return <Navigate replace={true} to="/login" />;
+//         // }
+
+//     }
+// }
