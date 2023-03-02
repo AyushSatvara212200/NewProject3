@@ -39,7 +39,7 @@ const NdTwo = ({ register }) => {
     return (
         <>
             <Container>
-               
+
                 <StyledTextField
                     id="outlined-basic" style={{ width: "500px !important" }} fullWidth label="Name" variant="outlined" {...register("nomineeName")}
                 />

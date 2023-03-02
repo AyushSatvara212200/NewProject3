@@ -4,6 +4,9 @@ import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 import HomeIcon from "@mui/icons-material/Home";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import LogoutIcon from "@mui/icons-material/Logout";
+import UpgradeIcon from '@mui/icons-material/Upgrade';
+import RegistrationIcon from '@mui/icons-material/AppRegistration';
+import ReceiptIcon from '@mui/icons-material/Receipt';
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -32,6 +35,15 @@ const StyledAccountCircleIcon = styled(AccountCircleIcon)`
   margin-top: 12px;
 `;
 const StyledPersonIcon = styled(PersonIcon)`
+  margin-top: 12px;
+`;
+const StyledUpgradeIcon = styled(UpgradeIcon)`
+  margin-top: 12px;
+`;
+const StyledRegistrationIcon = styled(RegistrationIcon)`
+  margin-top: 12px;
+`;
+const StyledReceiptIcon = styled(ReceiptIcon)`
   margin-top: 12px;
 `;
 
@@ -89,6 +101,24 @@ const SideNavbar = () => {
             <NavItem eventKey="account/nominee">
               <NavText>Nominee Detail</NavText>
             </NavItem>
+          </NavItem>
+          <NavItem eventKey="personalDetail">
+            <NavIcon>
+              <StyledUpgradeIcon />
+            </NavIcon>
+            <NavText>Update Profile</NavText>
+          </NavItem>
+          <NavItem eventKey="addmember">
+            <NavIcon>
+              <StyledRegistrationIcon />
+            </NavIcon>
+            <NavText>Register Nominee</NavText>
+          </NavItem>
+          <NavItem eventKey="transactions">
+            <NavIcon>
+              <StyledReceiptIcon />
+            </NavIcon>
+            <NavText>Transactions</NavText>
           </NavItem>
           <NavItem eventKey="">
             <NavIcon>

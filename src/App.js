@@ -8,6 +8,9 @@ import { Routes, Route } from "react-router-dom";
 import PersonalDetail from "./components/Nominee Info/nomineeDetailPage/personalDetail";
 import AccountShowDetail from "./components/Account/accountShowDetail";
 import AccountNomineeDetail from "./components/Account/accountNomineeDetail";
+import LineChart from "./components/linechart";
+import BarChart from "./components/barchart";
+import Transactions from "./components/transactions.jsx";
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
         <Route path="/personalDetail" element={<PersonalDetail />} />
         <Route path="/account/personal" element={<AccountShowDetail />} />
         <Route path="/account/nominee" element={<AccountNomineeDetail />} />
+        <Route path="/charts/linechart" element={<LineChart />} />
+        <Route path="/charts/barchart" element={<BarChart />} />
+        <Route path="/transactions" element={<Transactions />} />
       </Routes>
     </>
   );

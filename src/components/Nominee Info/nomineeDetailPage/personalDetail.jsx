@@ -38,7 +38,7 @@ const Wrapper = styled.div`
 `;
 const Heading = styled.h1`
   position: absolute;
-  top: 2%;
+  top: 4%;
 `;
 const onSubmit = (data) => {
   console.log(data);
@@ -82,11 +82,10 @@ const PersonalDetail = ({ data }) => {
           <Wrapper>
             <Heading>Personal Detail</Heading>
             <h2>{<NdOne register={register} data={data} />}</h2>
-
             <div>
-              {Object.keys(userdata).map((key) => {
+              {/* {Object.keys(userdata).map((key) => {
                 return <p key={key}>{`${key}: ${userdata[key]}`}</p>;
-              })}
+              })} */}
             </div>
             <button className="btn" type="submit">
               Submit
