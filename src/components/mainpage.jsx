@@ -78,20 +78,21 @@ const Wrapper = styled.div`
 `;
 const TitleWrap = styled.div`
   width: 100%;
-  padding-top: 20px;
+  /* padding-top: 20px; */
+  height: 80px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   position: fixed;
   z-index: 999;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
   gap:300px;
 `;
 const SearchBar = styled.div`
   width: 400px;
   height: 60px;
-  background-color: #6ebafc76;
+  background-color: #00068163;
   border-radius: 30px;
   display: flex;
   align-items: center;
@@ -237,7 +238,7 @@ export default function MainPage() {
       <SideNavbar />
       <Container>
         <TitleWrap>
-          <h1 style={{ fontSize: "40px", color: "lightblue" }}>
+          <h1 style={{ fontSize: "40px", color: "#000f4d",fontWeight:"bolder" }}>
             Main Dashboard
           </h1>
           <SearchBar>
@@ -361,33 +362,6 @@ export default function MainPage() {
           </ChartSection>
           <ChartSection style={{ display: "flex", alignItems: "center", justifyContent: "space-around" }}>
             <Calendar />
-            {/* <TableContainer component={Paper} title="Data" style={{ width: "700px", height: "350px" }}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Date </TableCell>
-                    <TableCell align="right">Pending</TableCell>
-                    <TableCell align="right">Paid</TableCell>
-                    <TableCell align="right">Status</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <TableRow
-                      key={row.name}
-                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        {row.name}
-                      </TableCell>
-                      <TableCell align="right">₹{row.calories}</TableCell>
-                      <TableCell align="right">₹{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer> */}
             <Table striped bordered hover variant="dark" style={{width:"700px"}}>
               <thead>
                 <tr>

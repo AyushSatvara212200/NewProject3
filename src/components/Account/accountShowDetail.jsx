@@ -21,8 +21,8 @@ const Container = styled.div`
   gap: 100px;
 `;
 const Wrapper = styled.div`
-  width: 40%;
-  height: 50%;
+  width: 700px;
+  height: 500px;
   font-size: 18px;
   display: flex;
   flex-direction: column;
@@ -33,7 +33,18 @@ const Wrapper = styled.div`
   border-radius: 20px;
   font-family: "Maven Pro", sans-serif I !important;
 `;
-
+const Division = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 30px;
+`
+const Para = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: center;
+`
 const AccountShowDetail = () => {
   const [user, setUser] = useState([]);
   const dispatch = useDispatch();
@@ -83,7 +94,7 @@ const AccountShowDetail = () => {
       <SideNavbar />
       <Container>
         <Wrapper>
-          <h1 style={{marginTop:"10px"}}>Personal Details</h1>
+          <h1 style={{ marginTop: "10px" }}>Personal Details</h1>
           {/* {user.map((userObj) => (
             <ul>
               <li>{userObj.nomineeName}</li>
@@ -97,12 +108,12 @@ const AccountShowDetail = () => {
           {/* {Object.keys(userdata).map((key) => {
                 return <p key={key}>{`${key}: ${userdata[key]}`}</p>;
               })} */}
-          <div style={{marginTop:"40px",fontSize:"25px",lineHeight:"50px",textAlign:"center"}}>
-            <img src={UserImage} style={{width:"120px",height:"120px",borderRadius:"20px"}} alt="" />
-            <p style={{ display: "flex", flexDirection: "row" }}><h4>Name :</h4>{Object.values(userdata.firstName)}&nbsp;{Object.values(userdata.lastName)}</p>
-            <p style={{ display: "flex", flexDirection: "row" }}><h4>Email Address :</h4>{Object.values(userdata.email)}</p>
-            <p style={{ display: "flex", flexDirection: "row" }}><h4>Phone Number :</h4>{Object.values(userdata.phone)}</p>
-          </div>
+          <Division>
+            <img src={UserImage} style={{ width: "100px", height: "100px", borderRadius: "20px", marginTop: "30px" }} alt="" />
+            <Para><h4>Name :</h4>{Object.values(userdata.firstName)}&nbsp;{Object.values(userdata.lastName)}</Para>
+            <Para><h4>Email Address :</h4>{Object.values(userdata.email)}</Para>
+            <Para><h4>Phone Number :</h4>{Object.values(userdata.phone)}</Para>
+          </Division>
         </Wrapper>
       </Container>
     </>
