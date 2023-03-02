@@ -19,13 +19,14 @@ import folder from "../Images/folder.png"
 import calendar from "../Images/calendar.png"
 import expired from "../Images/expired.png"
 import { Calendar } from "@progress/kendo-react-dateinputs";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+// import Table from '@mui/material/Table';
+// import TableBody from '@mui/material/TableBody';
+// import TableCell from '@mui/material/TableCell';
+// import TableContainer from '@mui/material/TableContainer';
+// import TableHead from '@mui/material/TableHead';
+// import TableRow from '@mui/material/TableRow';
+// import Paper from '@mui/material/Paper';
+import Table from 'react-bootstrap/Table';
 import {
   Chart,
   ChartSeries,
@@ -160,6 +161,16 @@ flex-direction: column;
 align-items: flex-start;
 justify-content: center;
 gap: 5px;
+`
+const Footer = styled.div`
+  width: 1000px;
+  height:50px;
+  background-color: #f0f8ff26;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 `
 const rows = [
   createData('12/10/20', 159, 6.0, "Active"),
@@ -350,7 +361,7 @@ export default function MainPage() {
           </ChartSection>
           <ChartSection style={{ display: "flex", alignItems: "center", justifyContent: "space-around" }}>
             <Calendar />
-            <TableContainer component={Paper} style={{ width: "700px", height: "350px" }}>
+            {/* <TableContainer component={Paper} title="Data" style={{ width: "700px", height: "350px" }}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
@@ -376,8 +387,75 @@ export default function MainPage() {
                   ))}
                 </TableBody>
               </Table>
-            </TableContainer>
+            </TableContainer> */}
+            <Table striped bordered hover variant="dark" style={{width:"700px"}}>
+              <thead>
+                <tr>
+                  <th>Sr No.</th>
+                  <th>Date</th>
+                  <th>Pending</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>12/4/2020</td>
+                  <td>₹ 300.00</td>
+                  <td style={{color:"red"}}>INACTIVE</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>1/7/2020</td>
+                  <td>₹ 200.00</td>
+                  <td style={{color:"green"}}>ACTIVE</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>12/2/2021</td>
+                  <td>₹ 00.00</td>
+                  <td style={{color:"green"}}>ACTIVE</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>15/5/2022</td>
+                  <td>₹ 1200.00</td>
+                  <td style={{color:"red"}}>INACTIVE</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>29/8/2022</td>
+                  <td>₹ 100.00</td>
+                  <td style={{color:"green"}}>ACTIVE</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>9/9/2022</td>
+                  <td>₹ 00.00</td>
+                  <td style={{color:"red"}}>INACTIVE</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>2/10/2022</td>
+                  <td>₹ 250.00</td>
+                  <td style={{color:"green"}}>ACTIVE</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>20/12/2022</td>
+                  <td>₹ 50.00</td>
+                  <td style={{color:"green"}}>ACTIVE</td>
+                </tr>
+              </tbody>
+            </Table>
           </ChartSection>
+          <Footer>
+            <span>© 2023 Project III . All Rights Reserved. Made with Hardwork</span>
+            <span>Support</span>
+            <span>License</span>
+            <span>Terms of Use</span>
+            <span>BLog</span>
+          </Footer>
         </InnerContainer>
       </Container>
     </>
