@@ -15,6 +15,17 @@ import "@progress/kendo-theme-default/dist/all.css";
 import ChartImage from "../Images/bar-chart.png"
 import RupeeImage from "../Images/rupee.png"
 import SumImage from "../Images/the-sum-of.png"
+import folder from "../Images/folder.png"
+import calendar from "../Images/calendar.png"
+import expired from "../Images/expired.png"
+import { Calendar } from "@progress/kendo-react-dateinputs";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 import {
   Chart,
   ChartSeries,
@@ -25,6 +36,7 @@ import {
   ChartLegend,
   ChartSeriesLabels,
 } from "@progress/kendo-react-charts";
+
 
 const Container = styled.div`
   width: 100%;
@@ -73,6 +85,7 @@ const TitleWrap = styled.div`
   position: fixed;
   z-index: 999;
   backdrop-filter: blur(5px);
+  gap:300px;
 `;
 const SearchBar = styled.div`
   width: 400px;
@@ -148,6 +161,20 @@ align-items: flex-start;
 justify-content: center;
 gap: 5px;
 `
+const rows = [
+  createData('12/10/20', 159, 6.0, "Active"),
+  createData('31/2/21', 237, 9.0, "Inactive"),
+  createData('2/4/21', 262, 16.0, "Active"),
+  createData('15/10/21', 305, 3.7, "Active"),
+  createData('20/2/23', 356, 16.0, "Inactive"),
+  createData('31/2/21', 237, 9.0, "Inactive"),
+  createData('2/4/21', 262, 16.0, "Active"),
+  createData('15/10/21', 305, 3.7, "Active"),
+  createData('20/2/23', 356, 16.0, "Inactive"),
+];
+function createData(name, calories, fat, carbs, protein) {
+  return { name, calories, fat, carbs, protein };
+}
 
 const twocategories = [
   "Jan",
@@ -238,9 +265,27 @@ export default function MainPage() {
               </ProductCard>
             </CardOne>
             <CardTwo>
-              <ProductCard></ProductCard>
-              <ProductCard></ProductCard>
-              <ProductCard></ProductCard>
+              <ProductCard>
+                <StyledImage src={calendar} alt="" />
+                <TextContainer>
+                  <p style={{ color: "#454545" }}>Next Date for Fees Pay</p>
+                  <h1 style={{ fontSize: "40px" }}>Apr 15</h1>
+                </TextContainer>
+              </ProductCard>
+              <ProductCard>
+                <StyledImage src={expired} alt="" />
+                <TextContainer>
+                  <p style={{ color: "#454545" }}>Pending Transactions</p>
+                  <h1 style={{ fontSize: "40px" }}>₹ 0</h1>
+                </TextContainer>
+              </ProductCard>
+              <ProductCard>
+                <StyledImage src={folder} alt="" />
+                <TextContainer>
+                  <p style={{ color: "#454545" }}>Total Transactions</p>
+                  <h1 style={{ fontSize: "40px" }}>15</h1>
+                </TextContainer>
+              </ProductCard>
             </CardTwo>
           </Wrapper>
           <ChartSection>
@@ -302,6 +347,36 @@ export default function MainPage() {
                 </Chart>
               </div>
             </div>
+          </ChartSection>
+          <ChartSection style={{ display: "flex", alignItems: "center", justifyContent: "space-around" }}>
+            <Calendar />
+            <TableContainer component={Paper} style={{ width: "700px", height: "350px" }}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Date </TableCell>
+                    <TableCell align="right">Pending</TableCell>
+                    <TableCell align="right">Paid</TableCell>
+                    <TableCell align="right">Status</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.map((row) => (
+                    <TableRow
+                      key={row.name}
+                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {row.name}
+                      </TableCell>
+                      <TableCell align="right">₹{row.calories}</TableCell>
+                      <TableCell align="right">₹{row.fat}</TableCell>
+                      <TableCell align="right">{row.carbs}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
           </ChartSection>
         </InnerContainer>
       </Container>
