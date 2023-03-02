@@ -12,7 +12,6 @@ import {
     ChartTitle,
     ChartLegend,
 } from '@progress/kendo-react-charts';
-import { color } from "@mui/system";
 
 
 const Container = styled.div`

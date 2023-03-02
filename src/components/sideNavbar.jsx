@@ -13,6 +13,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PersonIcon from "@mui/icons-material/Person";
 import { useDispatch } from "react-redux";
 import authActions from "../redux/reducers/auth/actions";
+import { useSelector } from "react-redux";
 
 const StyledSideNav = styled(SideNav)`
   height: 90% !important;
@@ -51,6 +52,7 @@ const SideNavbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const username = localStorage.getItem("username");
+  const { loggedIn, userdata } = useSelector((state) => state.auth);
   return (
     <>
       <StyledSideNav
@@ -69,7 +71,7 @@ const SideNavbar = () => {
             <NavIcon>
               <StyledPersonIcon />
             </NavIcon>
-            <NavText>Welcome {username} !!</NavText>
+            <NavText>Welcome   {userdata.firstName || ""} !!</NavText>
           </NavItem>
           <NavItem eventKey="mainpage">
             <NavIcon>

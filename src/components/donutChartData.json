@@ -1,0 +1,13 @@
+[ {
+    "kind": "Donation", "share": 0.175
+}, {
+    "kind": "Festival", "share": 0.118
+}, {
+    "kind": "DeathHelp", "share": 0.250
+}, {
+    "kind": "RegFees", "share": 0.052
+}, {
+    "kind": "Support", "share": 0.225
+}, {
+    "kind": "Other", "share": 0.192
+} ]
