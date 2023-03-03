@@ -5,7 +5,11 @@ import image from "../Images/poly.png";
 import UserImage from "../Images/userIconImage.png";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { NavLink } from 'react-router-dom';
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import phonepe from "../Images/phonepe.png"
+import paytm from "../Images/paytm.png"
+import gpay from "../Images/google-paya.jpeg"
+import mastercard from "../Images/MasterCard.png"
+
 
 const Container = styled.div`
   width: 100%;
@@ -17,8 +21,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 30px;
-  overflow-y: auto;
   position: relative;
+  overflow: hidden;
 `
 const Wrapper = styled.div`
   width: 100%;
@@ -64,32 +68,168 @@ const StyledTextField = styled.input`
 `;
 const ListView = styled.div`
 width: 90%;
+height: 630px;
 display: flex;
 flex-direction: column;
-align-items: center;
-justify-content: center;
+align-items: flex-start;
+justify-content: flex-start;
+`
+const TableDiv = styled.div`
+width: 100%;
+height: 100%;
+position: relative;
+overflow-y: scroll;
+background-color: aliceblue;
+::-webkit-scrollbar{
+    display: none;
+}
 `
 
 
 const transactions = () => {
     const transaction = [{
-        id: 0,
-        name: 'Creola Katherine Johnson',
-        profession: 'mathematician',
-    }, {
+        mode: paytm,
         id: 1,
-        name: 'Mario José Molina-Pasquel Henríquez',
-        profession: 'chemist',
+        date: '12/10/2020',
+        paid: '₹ 200.00',
+        pending: "₹ 00.00",
+        status: "INACTIVE"
     }, {
+        mode: phonepe,
         id: 2,
-        name: 'Mohammad Abdus Salam',
-        profession: 'physicist',
+        date: '1/12/2020',
+        paid: '₹ 100.00',
+        pending: "₹ 200.00",
+        status: "ACTIVE"
     }, {
-        name: 'Percy Lavon Julian',
-        profession: 'chemist',
+        mode: mastercard,
+        id: 3,
+        date: '22/3/2021',
+        paid: '₹ 1000.00',
+        pending: "₹300.00",
+        status: "INACTIVE"
     }, {
-        name: 'Subrahmanyan Chandrasekhar',
-        profession: 'astrophysicist',
+        mode: gpay,
+        id: 4,
+        date: '10/1/2022',
+        paid: '₹ 1650.00',
+        pending: "₹ 90.00",
+        status: "INACTIVE"
+    }, {
+        mode: mastercard,
+        id: 5,
+        date: '2/12/2022',
+        paid: '₹ 1890.00',
+        pending: "₹00.00",
+        status: "ACTIVE"
+    },
+    {
+        mode: mastercard,
+        id: 6,
+        date: '12/10/2020',
+        paid: '₹ 1200.00',
+        pending: "₹300.00",
+        status: "ACTIVE"
+    }, {
+        mode: phonepe,
+        id: 7,
+        date: '1/12/2020',
+        paid: '₹ 140.00',
+        pending: "₹ 00.00",
+        status: "INACTIVE"
+    }, {
+        mode: paytm,
+        id: 8,
+        date: '22/3/2021',
+        paid: '₹ 230.00',
+        pending: "₹ 10.00",
+        status: "ACTIVE"
+    }, {
+        mode: mastercard,
+        id: 9,
+        date: '10/1/2022',
+        paid: '₹ 120.00',
+        pending: "₹ 30.00",
+        status: "INACTIVE"
+    }, {
+        mode: paytm,
+        id: 10,
+        date: '2/12/2022',
+        paid: '₹ 200.00',
+        pending: "₹ 00.00",
+        status: "ACTIVE"
+    },
+    {
+        mode: gpay,
+        id: 11,
+        date: '12/10/2020',
+        paid: '₹ 900.00',
+        pending: "₹ 00.00",
+        status: "INACTIVE"
+    }, {
+        mode: mastercard,
+        id: 12,
+        date: '1/12/2020',
+        paid: '₹ 800.00',
+        pending: "₹ 100.00",
+        status: "ACTIVE"
+    }, {
+        mode: paytm,
+        id: 13,
+        date: '22/3/2021',
+        paid: '₹ 400.00',
+        pending: "₹ 100.00",
+        status: "INACTIVE"
+    }, {
+        mode: gpay,
+        id: 14,
+        date: '10/1/2022',
+        paid: '₹ 120.00',
+        pending: "₹ 30.00",
+        status: "INACTIVE"
+    }, {
+        mode: phonepe,
+        id: 15,
+        date: '2/12/2022',
+        paid: '₹ 300.00',
+        pending: "₹ 00.00",
+        status: "ACTIVE"
+    },
+    {
+        mode: gpay,
+        id: 16,
+        date: '12/10/2020',
+        paid: '₹ 620.00',
+        pending: "₹ 30.00",
+        status: "ACTIVE"
+    }, {
+        mode: phonepe,
+        id: 17,
+        date: '1/12/2020',
+        paid: '₹ 500.00',
+        pending: "₹ 220.00",
+        status: "INACTIVE"
+    }, {
+        mode: paytm,
+        id: 18,
+        date: '22/3/2021',
+        paid: '₹ 2000.00',
+        pending: "₹ 150.00",
+        status: "ACTIVE"
+    }, {
+        mode: gpay,
+        id: 19,
+        date: '10/1/2022',
+        paid: '₹ 1000.00',
+        pending: "₹ 00.00",
+        status: "INACTIVE"
+    }, {
+        mode: mastercard,
+        id: 20,
+        date: '2/12/2022',
+        paid: '₹ 450.00',
+        pending: "₹ 40.00",
+        status: "ACTIVE"
     }];
 
     return (
@@ -113,7 +253,40 @@ const transactions = () => {
                     </TitleWrap>
                 </Wrapper>
                 <ListView>
-                    <p>{transaction.name}</p>
+                    <table class="table text-center table-striped table-dark table-borderless" >
+                        <thead>
+                            <tr>
+                                <th scope="col">Sr No</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Paid</th>
+                                <th scope="col">Pending</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <TableDiv>
+                        {
+                            transaction.map((data) => {
+                                return (
+                                    <>
+                                        <table class="table text-center table-striped table-borderless" >
+                                            <tbody>
+                                                <tr >
+                                                    <img src={data.mode} style={{ width: "40px", height: "40px", padding: "0px" }} alt="" />
+                                                    <td style={{ width: "245px", textAlign: "start", paddingLeft: "40px" }} scope="col">{data.id}</td>
+                                                    <td style={{ width: "245px", textAlign: "start" }} scope="col">{data.date}</td>
+                                                    <td style={{ width: "245px", textAlign: "start" }} scope="col">{data.paid}</td>
+                                                    <td style={{ width: "245px", textAlign: "start", paddingLeft: "30px" }} scope="col">{data.pending}</td>
+                                                    {data.status === "ACTIVE" ? <td style={{ width: "245px", padding: "8px", color: "green" }} scope="col">{data.status}</td> : <td style={{ width: "245px", padding: "8px", color: "red" }} scope="col">{data.status}</td>}
+                                                    {/* <td style={{ width: "245px", padding: "8px" }} scope="col">{data.status}</td> */}
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </>
+                                )
+                            })
+                        }
+                    </TableDiv>
                 </ListView>
             </Container>
         </>
