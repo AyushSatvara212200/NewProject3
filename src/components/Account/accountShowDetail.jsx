@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import image from "../../Images/poly.png";
+import image from "../../Images/diamond-sunset.png";
+import innerImage from "../../Images/subtle-prism.png"
 import SideNavbar from "../sideNavbar";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import authActions from "../../redux/reducers/auth/actions";
-import UserImage from "../../Images/user-logo.jpeg"
+import UserImage from "../../Images/userIconImage.png";
+import threedart from "../../Images/3dart.png";
+import "../Nominee Info/nomineeDetailPage/button.css";
 
 const Container = styled.div`
   width: 100%;
@@ -14,11 +17,11 @@ const Container = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   position: relative;
-  gap: 100px;
+  /* gap: 100px; */
 `;
 const Wrapper = styled.div`
   width: 700px;
@@ -27,23 +30,28 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: space-between; */
+  background-image: url(${innerImage});
+  justify-content: space-evenly;
   background-color: #ffffff63;
   backdrop-filter: blur(5px);
   border-radius: 20px;
   font-family: "Maven Pro", sans-serif I !important;
 `;
 const Division = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 30px;
-`
-const Para = styled.div`
+
 display: flex;
 flex-direction: row;
+align-items: center;
 justify-content: center;
+gap: 100px;
+`
+const Para = styled.div`
+height: 200px;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+justify-content: center;
+gap: 20px;
 `
 const AccountShowDetail = () => {
   const [user, setUser] = useState([]);
@@ -93,27 +101,20 @@ const AccountShowDetail = () => {
     <>
       <SideNavbar />
       <Container>
+        <img src={threedart} alt="" />
         <Wrapper>
           <h1 style={{ marginTop: "10px" }}>Personal Details</h1>
-          {/* {user.map((userObj) => (
-            <ul>
-              <li>{userObj.nomineeName}</li>
-              <li>{userObj.nomineeGender}</li>
-              <li>{userObj.nomineeRelation}</li>
-              <li>{userObj.nomineeEmail}</li>
-              <li>{userObj.nomineePhone}</li>
-              <li>{userObj.nomineeAddress}</li>
-            </ul>
-          ))} */}
-          {/* {Object.keys(userdata).map((key) => {
-                return <p key={key}>{`${key}: ${userdata[key]}`}</p>;
-              })} */}
           <Division>
-            <img src={UserImage} style={{ width: "100px", height: "100px", borderRadius: "20px", marginTop: "30px" }} alt="" />
-            <Para><h4>Name :</h4>{Object.values(userdata.firstName)}&nbsp;{Object.values(userdata.lastName)}</Para>
-            <Para><h4>Email Address :</h4>{Object.values(userdata.email)}</Para>
-            <Para><h4>Phone Number :</h4>{Object.values(userdata.phone)}</Para>
+            <img src={UserImage} style={{ width: "200px", height: "180px", borderRadius: "20px" }} alt="" />
+            <Para>
+              <h3>{Object.values(userdata.firstName)}&nbsp;{Object.values(userdata.lastName)}</h3>
+              <h4>{Object.values(userdata.email)}</h4>
+              <h4>{Object.values(userdata.phone)}</h4>
+            </Para>
           </Division>
+          <button className="btn" type="submit">
+            UPDATE
+          </button>
         </Wrapper>
       </Container>
     </>

@@ -33,7 +33,6 @@ const Wrapper = styled.div`
   background-color: #cbdaffc2;
   backdrop-filter: blur(5px);
   border-radius: 20px;
-  gap: 25px;
   font-family: "Maven Pro", sans-serif I !important;
 `;
 const Heading = styled.h1`

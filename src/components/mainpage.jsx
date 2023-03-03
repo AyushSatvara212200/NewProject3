@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { Navigate } from "react-router";
+// import { Navigate } from "react-router";
 import styled from "styled-components";
-import { AwesomeButton } from "react-awesome-button";
+// import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import image from "../Images/poly.png";
-import LogoutIcon from "@mui/icons-material/LogoutOutlined";
+// import LogoutIcon from "@mui/icons-material/LogoutOutlined";
 import SideNavbar from "./sideNavbar";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import data from "./donutChartData.json";
@@ -19,6 +19,7 @@ import folder from "../Images/folder.png"
 import calendar from "../Images/calendar.png"
 import expired from "../Images/expired.png"
 import { Calendar } from "@progress/kendo-react-dateinputs";
+import UserImage from "../Images/userIconImage.png";
 // import Table from '@mui/material/Table';
 // import TableBody from '@mui/material/TableBody';
 // import TableCell from '@mui/material/TableCell';
@@ -37,6 +38,7 @@ import {
   ChartLegend,
   ChartSeriesLabels,
 } from "@progress/kendo-react-charts";
+import { NavLink } from "react-router-dom";
 
 
 const Container = styled.div`
@@ -148,6 +150,16 @@ const ChartSection = styled.div`
   align-items: center;
   justify-content: space-evenly;
 `;
+const ChartSectionTable = styled.div`
+  width: 90%;
+  height: 500px;
+  background-color: transparent;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+`;
 const StyledImage = styled.img`
   width: 60px;
   height: 60px;
@@ -189,44 +201,42 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const twocategories = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "July",
-  "Aug",
-  "Sept",
-  "Oct",
-  "Nov",
-  "Dec",
+  "General",
+  "Death Help",
+  "Maintenance",
+  "External Expenses",
+  "Donation",
+
 ];
 const twoseries = [
   {
-    name: "General",
+    name: "Festival",
     data: [
-      3.907, 7.943, 7.848, 2.42, 1.09, 3.54, 6.7, 3.56, 7.848, 2.42, 1.09, 3.54,
+      3.907, 7.943, 7.848, 2.42
+    ],
+  },
+  {
+    name: "Registration Fees",
+    data: [
+      7.295, 7.175, 3.907, 7.943, 0.566
+    ],
+  },
+  {
+    name: "Donation",
+    data: [
+      0.21, 0.375, 1.161, 7.295, 1.55
     ],
   },
   {
     name: "Death Help",
     data: [
-      7.295, 7.175, 3.907, 7.943, 7.848, 2.42, 0.21, 0.375, 1.161, 3.23, 4.56,
-      6.53,
+      1.988, 2.733, 3.994, 6.7, 2.534
     ],
   },
   {
-    name: "Maintenance",
+    name: "Other",
     data: [
-      0.21, 0.375, 1.161, 7.295, 2.42, 1.09, 3.54, 6.7, 3.56, 0.21, 0.375,
-      1.161,
-    ],
-  },
-  {
-    name: "External Expenses X 100",
-    data: [
-      1.988, 2.733, 3.994, 6.7, 3.56, 0.21, 0.375, 6.7, 3.56, 7.848, 2.42, 1.09,
+      2.733, 6.7, 1.988, 2.733, 3.994
     ],
   },
 ];
@@ -238,7 +248,7 @@ export default function MainPage() {
       <SideNavbar />
       <Container>
         <TitleWrap>
-          <h1 style={{ fontSize: "40px", color: "#000f4d",fontWeight:"bolder" }}>
+          <h1 style={{ fontSize: "40px", color: "#000f4d", fontWeight: "bolder" }}>
             Main Dashboard
           </h1>
           <SearchBar>
@@ -246,9 +256,7 @@ export default function MainPage() {
             <SettingsIcon
               style={{ width: "40px", height: "40px", color: "#b4b4b4" }}
             />
-            <AccountCircleIcon
-              style={{ width: "40px", height: "40px", color: "#cfe4ff" }}
-            />
+            <NavLink to="/account/personal"><img src={UserImage} style={{ width: "40px", height: "40px", borderRadius: "50%" }} alt="" /></NavLink>
           </SearchBar>
         </TitleWrap>
         <InnerContainer>
@@ -309,7 +317,7 @@ export default function MainPage() {
                     height: 400,
                     backgroundColor: "blue",
                   }}>
-                  <ChartTitle text="Expense Distribution" />
+                  <ChartTitle text="Expense Distribution Yearly" />
                   <ChartSeries>
                     <ChartSeriesItem
                       type="donut"
@@ -360,9 +368,9 @@ export default function MainPage() {
               </div>
             </div>
           </ChartSection>
-          <ChartSection style={{ display: "flex", alignItems: "center", justifyContent: "space-around" }}>
+          <ChartSectionTable>
             <Calendar />
-            <Table striped bordered hover variant="dark" style={{width:"700px"}}>
+            <Table striped bordered hover variant="dark" style={{ width: "700px" }}>
               <thead>
                 <tr>
                   <th>Sr No.</th>
@@ -372,57 +380,57 @@ export default function MainPage() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr >
                   <td>1</td>
                   <td>12/4/2020</td>
                   <td>₹ 300.00</td>
-                  <td style={{color:"red"}}>INACTIVE</td>
+                  <td style={{ color: "red" }}>INACTIVE</td>
                 </tr>
                 <tr>
                   <td>2</td>
                   <td>1/7/2020</td>
                   <td>₹ 200.00</td>
-                  <td style={{color:"green"}}>ACTIVE</td>
+                  <td style={{ color: "green" }}>ACTIVE</td>
                 </tr>
                 <tr>
                   <td>3</td>
                   <td>12/2/2021</td>
                   <td>₹ 00.00</td>
-                  <td style={{color:"green"}}>ACTIVE</td>
+                  <td style={{ color: "green" }}>ACTIVE</td>
                 </tr>
                 <tr>
                   <td>4</td>
                   <td>15/5/2022</td>
                   <td>₹ 1200.00</td>
-                  <td style={{color:"red"}}>INACTIVE</td>
+                  <td style={{ color: "red" }}>INACTIVE</td>
                 </tr>
                 <tr>
                   <td>5</td>
                   <td>29/8/2022</td>
                   <td>₹ 100.00</td>
-                  <td style={{color:"green"}}>ACTIVE</td>
+                  <td style={{ color: "green" }}>ACTIVE</td>
                 </tr>
                 <tr>
                   <td>6</td>
                   <td>9/9/2022</td>
                   <td>₹ 00.00</td>
-                  <td style={{color:"red"}}>INACTIVE</td>
+                  <td style={{ color: "red" }}>INACTIVE</td>
                 </tr>
                 <tr>
                   <td>7</td>
                   <td>2/10/2022</td>
                   <td>₹ 250.00</td>
-                  <td style={{color:"green"}}>ACTIVE</td>
+                  <td style={{ color: "green" }}>ACTIVE</td>
                 </tr>
                 <tr>
                   <td>8</td>
                   <td>20/12/2022</td>
                   <td>₹ 50.00</td>
-                  <td style={{color:"green"}}>ACTIVE</td>
+                  <td style={{ color: "green" }}>ACTIVE</td>
                 </tr>
               </tbody>
             </Table>
-          </ChartSection>
+          </ChartSectionTable>
           <Footer>
             <span>© 2023 Project III . All Rights Reserved. Made with Hardwork</span>
             <span>Support</span>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import backgroundImage from "../Images/poly.png";
 import SideNavbar from "./sideNavbar";
 import '@progress/kendo-theme-default/dist/all.css';
+import data from "./barchartdata.json";
 import {
     Chart,
     ChartTitle,
@@ -11,8 +12,10 @@ import {
     ChartCategoryAxis,
     ChartCategoryAxisTitle,
     ChartCategoryAxisItem,
+    ChartValueAxis,
+    ChartValueAxisItem,
+    ChartSeriesLabels,
 } from '@progress/kendo-react-charts';
-import { color } from "@mui/system";
 
 
 const Container = styled.div`
@@ -64,6 +67,17 @@ const onecategories = ["Jan-Mar", "Apr-Jun", "July-Sept", "Oct-Dec"];
 
 
 const barchart = () => {
+    const pointColor = (point) => {
+        let summary = point.dataItem.summary;
+        if (summary) {
+            return summary === "total" ? "#555" : "gray";
+        }
+        if (point.value > 0) {
+            return "green";
+        } else {
+            return "red";
+        }
+    };
     return (
         <>
             <Container>
@@ -95,18 +109,22 @@ const barchart = () => {
                             width: 800,
                             height: 380,
                         }}>
-                            <ChartTitle text="Monthly" />
-                            <ChartCategoryAxis>
-                                <ChartCategoryAxisItem categories={onecategories}>
-                                    <ChartCategoryAxisTitle text="Transactions" />
-                                </ChartCategoryAxisItem>
-                            </ChartCategoryAxis>
+                            <ChartTitle text="Cash flow throughout the Year 2022" />
                             <ChartSeries>
-                                <ChartSeriesItem type="bar" gap={2} spacing={0.25} data={firstoneSeries} />
-                                <ChartSeriesItem type="bar" data={secondoneSeries} />
-                                <ChartSeriesItem type="bar" data={thirdoneSeries} />
-                                <ChartSeriesItem type="bar" data={fourthoneSeries} />
+                                <ChartSeriesItem
+                                    type="waterfall"
+                                    data={data}
+                                    color={pointColor}
+                                    field="amount"
+                                    categoryField="period"
+                                    summaryField="summary"
+                                >
+                                    <ChartSeriesLabels format="C0" position="insideEnd" />
+                                </ChartSeriesItem>
                             </ChartSeries>
+                            <ChartValueAxis>
+                                <ChartValueAxisItem />
+                            </ChartValueAxis>
                         </Chart>
                     </div>
                 </div>

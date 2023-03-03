@@ -19,39 +19,39 @@ const StyledSideNav = styled(SideNav)`
   height: 90% !important;
   top: 5% !important;
   border-radius: 20px;
-  background-color: #00479d80 !important;
+  background-color: #15009d80 !important;
   backdrop-filter: blur(3px);
   box-shadow: -2px 0px 9px -1px #00000080;
 `;
 const StyledHomeIcon = styled(HomeIcon)`
-  margin-top: 12px;
+  /* margin-top: 12px; */
 `;
 const StyledChartIcon = styled(BarChartIcon)`
-  margin-top: 12px;
+  /* margin-top: 12px; */
 `;
 const StyledLogoutIcon = styled(LogoutIcon)`
-  margin-top: 12px;
+  /* margin-top: 12px; */
 `;
 const StyledAccountCircleIcon = styled(AccountCircleIcon)`
-  margin-top: 12px;
+  /* margin-top: 12px; */
 `;
 const StyledPersonIcon = styled(PersonIcon)`
-  margin-top: 12px;
+  /* margin-top: 12px; */
 `;
 const StyledUpgradeIcon = styled(UpgradeIcon)`
-  margin-top: 12px;
+  /* margin-top: 12px; */
 `;
 const StyledRegistrationIcon = styled(RegistrationIcon)`
-  margin-top: 12px;
+  /* margin-top: 12px; */
 `;
 const StyledReceiptIcon = styled(ReceiptIcon)`
-  margin-top: 12px;
+  /* margin-top: 12px; */
 `;
 
 const SideNavbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const username = localStorage.getItem("username");
+  // const username = localStorage.getItem("username");
   const { loggedIn, userdata } = useSelector((state) => state.auth);
   return (
     <>
