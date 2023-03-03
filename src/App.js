@@ -11,6 +11,7 @@ import AccountNomineeDetail from "./components/Account/accountNomineeDetail";
 import LineChart from "./components/linechart";
 import BarChart from "./components/barchart";
 import Transactions from "./components/transactions.jsx";
+import Posts from "./components/posts.jsx";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/charts/linechart" element={<LineChart />} />
         <Route path="/charts/barchart" element={<BarChart />} />
         <Route path="/transactions" element={<Transactions />} />
+        <Route path="/posts" element={<Posts />} />
       </Routes>
     </>
   );

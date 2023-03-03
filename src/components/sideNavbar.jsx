@@ -14,6 +14,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useDispatch } from "react-redux";
 import authActions from "../redux/reducers/auth/actions";
 import { useSelector } from "react-redux";
+import TvIcon from '@mui/icons-material/Tv';
 
 const StyledSideNav = styled(SideNav)`
   height: 90% !important;
@@ -78,6 +79,12 @@ const SideNavbar = () => {
               <StyledHomeIcon />
             </NavIcon>
             <NavText>Home</NavText>
+          </NavItem>
+          <NavItem eventKey="posts">
+            <NavIcon>
+              <TvIcon />
+            </NavIcon>
+            <NavText>Posts</NavText>
           </NavItem>
           <NavItem eventKey="charts">
             <NavIcon>
