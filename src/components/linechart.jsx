@@ -91,11 +91,11 @@ const linechart = () => {
         <>
             <Container>
                 <SideNavbar />
-                <div className="col-6">
+                <div className="col-8">
                     <div className="k-card">
                         <Chart
                             style={{
-                                width: 800,
+                                width: 920,
                                 height: 380,
                                 backgroundColor:"blue"
                             }}
@@ -121,11 +121,11 @@ const linechart = () => {
                         </Chart>
                     </div>
                 </div>
-                 <div className="col-6">
+                 <div className="col-8">
                     <div className="k-card">
                         <Chart
                             style={{
-                                width: 800,
+                                width: 920,
                                 height: 380,
                                 backgroundColor:"blue"
                             }}

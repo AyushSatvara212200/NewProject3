@@ -82,10 +82,10 @@ const barchart = () => {
         <>
             <Container>
                 <SideNavbar />
-                <div className="col-6">
+                <div className="col-8">
                     <div className="k-card">
                         <Chart style={{
-                            width: 800,
+                            width: 920,
                             height: 380,
                         }}>
                             <ChartTitle text="Yearly" />
@@ -103,11 +103,11 @@ const barchart = () => {
                         </Chart>
                     </div>
                 </div>
-                <div className="col-6">
+                <div className="col-8">
                     <div className="k-card">
                         <Chart style={{
-                            width: 800,
-                            height: 380,
+                             width: 920,
+                             height: 380,
                         }}>
                             <ChartTitle text="Cash flow throughout the Year 2022" />
                             <ChartSeries>
