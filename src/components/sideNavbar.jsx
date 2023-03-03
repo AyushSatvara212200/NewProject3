@@ -15,13 +15,14 @@ import { useDispatch } from "react-redux";
 import authActions from "../redux/reducers/auth/actions";
 import { useSelector } from "react-redux";
 import TvIcon from '@mui/icons-material/Tv';
+import Tooltip from '@mui/material/Tooltip'
 
 const StyledSideNav = styled(SideNav)`
   height: 90% !important;
   top: 5% !important;
   border-radius: 20px;
-  background-color: #15009d80 !important;
-  backdrop-filter: blur(3px);
+  background-color: #15009db5 !important;
+  backdrop-filter: blur(15px);
   box-shadow: -2px 0px 9px -1px #00000080;
 `;
 const StyledHomeIcon = styled(HomeIcon)`
@@ -76,13 +77,13 @@ const SideNavbar = () => {
           </NavItem>
           <NavItem eventKey="mainpage">
             <NavIcon>
-              <StyledHomeIcon />
+            <Tooltip  title="Home" arrow placement="right"><StyledHomeIcon /></Tooltip>
             </NavIcon>
             <NavText>Home</NavText>
           </NavItem>
           <NavItem eventKey="posts">
             <NavIcon>
-              <TvIcon />
+            <Tooltip  title="Posts" arrow placement="right"><TvIcon /></Tooltip>
             </NavIcon>
             <NavText>Posts</NavText>
           </NavItem>
@@ -113,25 +114,25 @@ const SideNavbar = () => {
           </NavItem>
           <NavItem eventKey="personalDetail">
             <NavIcon>
-              <StyledUpgradeIcon />
+            <Tooltip  title="Update Profile" arrow placement="right"><StyledUpgradeIcon /></Tooltip>
             </NavIcon>
             <NavText>Update Profile</NavText>
           </NavItem>
           <NavItem eventKey="addmember">
             <NavIcon>
-              <StyledRegistrationIcon />
+            <Tooltip  title="Register Nominee" arrow placement="right"><StyledRegistrationIcon /></Tooltip>
             </NavIcon>
             <NavText>Register Nominee</NavText>
           </NavItem>
           <NavItem eventKey="transactions">
             <NavIcon>
-              <StyledReceiptIcon />
+            <Tooltip  title="Transactions" arrow placement="right"><StyledReceiptIcon /></Tooltip>
             </NavIcon>
             <NavText>Transactions</NavText>
           </NavItem>
           <NavItem eventKey="">
             <NavIcon>
-              <StyledLogoutIcon />
+            <Tooltip  title="Log Out" arrow placement="right"><StyledLogoutIcon /></Tooltip>
             </NavIcon>
             <NavText>Log Out</NavText>
           </NavItem>
